@@ -50,6 +50,7 @@ MESI = ["gen", "feb", "mar", "apr", "mag", "giu", "lug", "ago", "set", "ott", "n
 MONO = "'JB Mono', ui-monospace, Menlo, monospace"
 
 PORTRAIT_WIDTH = int(os.environ.get("PORTRAIT_WIDTH", 400))
+PORTRAIT_STRETCH = float(os.environ.get("PORTRAIT_STRETCH", 2.0))  # allungamento verticale dei caratteri
 PORTRAIT_INK = "#d4d4d4"  # grigio morbido: meno contrasto, ogni carattere disturba meno  # larghezza del ritratto nell'hero
 
 # Ritmo della pagina. Il browser avvia l'animazione di un'immagine solo quando
@@ -330,7 +331,7 @@ def hero(s: dict) -> str:
         fs = cw / 0.6
         lh = cw * 2
         x0 = W - 24 - box_w + (box_w - cols * cw) / 2
-        y0 = bottom - len(rows) * lh + fs * 0.8
+        top0 = bottom - len(rows) * lh
         tone_file = ROOT / "assets" / "portrait-tone.txt"
         tones = tone_file.read_text(encoding="utf-8").rstrip("\n").split("\n") if tone_file.exists() else []
         step = min(0.035, 2.0 / len(rows))  # tutto il ritratto si stampa in circa 2 secondi
@@ -339,8 +340,14 @@ def hero(s: dict) -> str:
             if not r.strip():
                 continue
             content = portrait_row(r, tones[i] if i < len(tones) else "")
+            # i caratteri occupano solo il centro della riga: li allungo in verticale
+            # attorno al centro della riga, cosi tra una riga e l'altra non resta
+            # una striscia nera (che su schermi grandi si vede come righe)
+            cy = top0 + (i + 0.5) * lh
+            k = PORTRAIT_STRETCH
             lines.append(
-                f'<text x="{x0:.1f}" y="{y0 + i * lh:.2f}" font-size="{fs:.2f}" xml:space="preserve" '
+                f'<text x="{x0:.1f}" y="{cy + 0.33 * fs:.2f}" font-size="{fs:.2f}" xml:space="preserve" '
+                f'transform="matrix(1 0 0 {k} 0 {cy * (1 - k):.2f})" '
                 f'{anim("fadeIn", 0.25, t + 0.4 + i * step, "linear")}>{content}</text>'
             )
         body.append(f'<g clip-path="url(#win)" fill="{PORTRAIT_INK}">{"".join(lines)}</g>')
