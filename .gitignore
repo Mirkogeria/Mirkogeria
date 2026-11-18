@@ -1,0 +1,4 @@
+.DS_Store
+__pycache__/
+# avatar a colori: alternativa non usata, resta solo in locale
+assets/avatar.png

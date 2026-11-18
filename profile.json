@@ -1,0 +1,56 @@
+{
+  "username": "Mirkogeria",
+  "name": "Mirko Geria",
+  "role": "AI Engineer",
+  "host": "mirko@ai-lab",
+  "about": [
+    "Progetto e costruisco agenti AI e automazioni con LLM:",
+    "dall'idea al prodotto che lavora davvero, ogni giorno."
+  ],
+  "now": "ora: agenti AI che automatizzano processi e task di lavoro",
+  "stack": [
+    "TypeScript",
+    "Python",
+    "LLM",
+    "Agenti AI",
+    "Node.js",
+    "PostgreSQL"
+  ],
+  "contacts": {
+    "linkedin": "mirko-geria",
+    "email": "mirkogeria@gmail.com",
+    "collab": "aperto a progetti su agenti AI e automazioni"
+  },
+  "projects": [
+    {
+      "status": "RUN",
+      "title": "Agente AI per la produzione cinematografica",
+      "lang": "TypeScript",
+      "visibility": "privato"
+    },
+    {
+      "status": "RUN",
+      "title": "Gestionale per un negozio di carte collezionabili",
+      "lang": "TypeScript",
+      "visibility": "privato"
+    },
+    {
+      "status": "PoC",
+      "title": "Classificazione automatica delle email con LLM",
+      "lang": "TypeScript",
+      "visibility": "privato"
+    },
+    {
+      "status": "OK",
+      "title": "OrderFlow DevOps",
+      "lang": "Python",
+      "visibility": "pubblico"
+    },
+    {
+      "status": "OK",
+      "title": "Sito web La misura di tutto",
+      "lang": "HTML",
+      "visibility": "privato"
+    }
+  ]
+}
